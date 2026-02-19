@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Route Checker (CMH / SWF + Hold Overnight)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="header">
+      <h1>Route Checker</h1>
+      <p class="sub">
+        Enter a 3-letter destination code to see <b>CMH/SWF</b> and whether it can be <b>held overnight</b>
+        (based on tomorrow’s tender day arriving on Monday).
+      </p>
+    </header>
+
+    <main class="card">
+      <div class="row">
+        <label class="label" for="destInput">Destination (3 letters)</label>
+        <div class="inputRow">
+          <input id="destInput" maxlength="3" placeholder="e.g. ABQ" autocomplete="off" />
+          <button id="checkBtn">Check</button>
+        </div>
+        <div class="hint" id="dayHint"></div>
+      </div>
+
+      <div class="row">
+        <label class="label" for="todayOverride">Assume today is</label>
+        <select id="todayOverride">
+          <option value="AUTO">Auto (your computer’s day)</option>
+          <option value="MONDAY">Monday</option>
+          <option value="TUESDAY">Tuesday</option>
+          <option value="WEDNESDAY">Wednesday</option>
+          <option value="THURSDAY">Thursday</option>
+          <option value="FRIDAY">Friday</option>
+          <option value="SATURDAY">Saturday</option>
+          <option value="SUNDAY">Sunday</option>
+        </select>
+        <div class="hint">Use this only if you want to test different “today” values.</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <section id="result" class="result hidden">
+        <div class="pillRow">
+          <span class="pill" id="pillDest"></span>
+          <span class="pill muted" id="pillPickup"></span>
+          <span class="pill muted" id="pillArrival"></span>
+        </div>
+
+        <div class="grid">
+          <div class="kpi">
+            <div class="kpiLabel">Hub (Transfer Point)</div>
+            <div class="kpiValue" id="hubValue">—</div>
+          </div>
+
+          <div class="kpi">
+            <div class="kpiLabel">Can be held overnight?</div>
+            <div class="kpiValue" id="holdValue">—</div>
+          </div>
+        </div>
+
+        <div class="note" id="noteText"></div>
+      </section>
+
+      <section id="error" class="error hidden"></section>
+
+      <div class="divider"></div>
+
+      <section class="logSection">
+        <div class="logHeader">
+          <div>
+            <div class="logTitle">Lookup Log</div>
+            <div class="logSub">Stores every abbreviation you check (saved in this browser).</div>
+          </div>
+          <button id="clearLogBtn" class="dangerBtn" title="Clear stored log">Clear Log</button>
+        </div>
+
+        <div class="tableWrap">
+          <table class="logTable" id="logTable">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Destination</th>
+                <th>Transfer Point</th>
+                <th>Hold Overnight</th>
+              </tr>
+            </thead>
+            <tbody id="logTbody">
+              <!-- rows injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Data source: Route guide spreadsheet (Destination, Tender Schedule, Transfer Point).</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
