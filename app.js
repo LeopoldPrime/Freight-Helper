@@ -177,7 +177,7 @@ function showResult(dest, pickupDay, arrivalDay, hub, canHold){
   els.pillPickup.textContent = `Pickup day: ${titleCaseDay(pickupDay)}`;
   els.pillArrival.textContent = arrivalDay ? `Arrival day: ${titleCaseDay(arrivalDay)}` : `Arrival day: (not listed)`;
 
-  const hubClean = (hub === "CMH" || hub === "SWF") ? hub : "UNKNOWN";
+  const hubClean = (hub === "CMH" || hub === "SWF" || hub === "ROC") ? hub : "UNKNOWN";
   els.hubValue.textContent = hubClean;
 
   if (!arrivalDay){
@@ -306,4 +306,5 @@ els.clearLogBtn.addEventListener("click", () => {
 setHint();
 
 renderLog();
+
 
